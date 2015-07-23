@@ -1,0 +1,29 @@
+{
+  "name": "moleculejs",
+  "version": "1.0.0",
+  "description": "(Yet another) JavaScript class-like library",
+  "main": "molecule.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dxprog/molecule.js.git"
+  },
+  "author": "Matt Hackmann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dxprog/molecule.js/issues"
+  },
+  "homepage": "https://github.com/dxprog/molecule.js",
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "karma": "^0.13.3",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-mocha": "^0.2.0",
+    "karma-sinon": "^1.0.4",
+    "mocha": "^2.2.5",
+    "sinon": "^1.15.4"
+  }
+}
