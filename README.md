@@ -20,4 +20,12 @@ It's yet another little library for making creating classes easy. It borrows a l
         }
     });
 
+    // Multiple extension
+    var ExtendedClass = Molecule(MyClass, ExtendedClass, {
+        __construct: function() {
+            // Call the parent __construct
+            this.super.__construct.apply(this, arguments);
+        }
+    });
+
     var instance = new ExtendedClass();
