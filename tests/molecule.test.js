@@ -130,4 +130,73 @@ describe('Molecule tests', function() {
 
   });
 
+  describe('Multi-molecule definitions', function() {
+
+    var duck;
+    var weasel;
+
+    beforeEach(function() {
+      duck = {
+        __construct: function() {
+          this.animal = [ 'duck' ];
+        },
+        quack: function() {
+          return 'quack';
+        }
+      };
+
+      weasel = {
+        __construct: function() {
+          this.__construct.super.call(this);
+          this.animal.push('weasel');
+        },
+        weasel: function() {
+          return 'weasel things';
+        }
+      };
+    });
+
+    it('should correctly mixin multiple objects', function() {
+      var Platypus = Molecule(duck, weasel, {
+        toString: function() {
+          return this.animal.join(' ');
+        }
+      });
+      var platypus = new Platypus();
+
+      expect(platypus.toString()).to.equal('duck weasel');
+      expect(platypus.quack).to.be.a('function');
+      expect(platypus.weasel).to.be.a('function');
+
+    });
+
+    it('should extend Molecules where possible', function() {
+      var Duck = Molecule(duck);
+      var Weasel = Molecule(weasel);
+      var Mutant = Molecule(Duck, Weasel, {
+        __construct: function() {
+          this.__construct.super.call(this);
+          this.animal.push('X-man');
+        },
+        weasel: function() {
+          return 'snikt';
+        },
+        quack: function() {
+          return 'sonic boom';
+        },
+        toString: function() {
+          return this.animal.join(' ');
+        }
+      });
+
+      var mutant = new Mutant();
+
+      expect(mutant.toString()).to.equal('duck weasel X-man');
+      expect(mutant.weasel()).to.equal('snikt');
+      expect(mutant.quack()).to.equal('sonic boom');
+
+    });
+
+  });
+
 });

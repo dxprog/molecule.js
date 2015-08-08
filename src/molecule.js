@@ -11,6 +11,11 @@
    */
   function Molecule(proto) {
 
+    // If multiple objects were passed, do a mixin
+    if (arguments.length > 1) {
+      return createMultiMolecule(Array.prototype.slice.call(arguments, 0));
+    }
+
     var retVal = function() {
 
       // If a constructor was set, call it
@@ -57,7 +62,7 @@
 
               return retVal;
             };
-          }(this.prototype[i], i));
+          }(retVal.prototype[i], i));
         }
 
         retVal.prototype[i] = proto[i];
@@ -66,6 +71,35 @@
     }
 
     return retVal;
+  }
+
+  function createMultiMolecule(objects) {
+
+    var i = 0;
+    var count = objects.length;
+    var retVal = null;
+
+    // If the first object is a Molecule, start with that as the base
+    if (objects[0] && objects[0]._isMolecule) {
+      retVal = objects[0];
+      i++;
+    }
+
+    for (; i < count; i++) {
+      var obj = objects[i];
+      if (typeof obj === 'object' || typeof obj === 'function') {
+        if (retVal) {
+          retVal = retVal.extend(obj._isMolecule ? obj.prototype : obj);
+        } else {
+          retVal = Molecule(obj);
+        }
+      } else {
+        throw 'Class extensions must be a ';
+      }
+    }
+
+    return retVal;
+
   }
 
   window.Molecule = Molecule;
