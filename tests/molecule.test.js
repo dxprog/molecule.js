@@ -1,3 +1,9 @@
+// Bootstrapping for mocha (node) vs karma (browser) tests
+var require = require || function(){};
+var Molecule = typeof window !== 'undefined' ? window.Molecule : require('../src/molecule');
+var sinon = sinon || require('sinon');
+var expect = expect || require('chai').expect;
+
 describe('Molecule tests', function() {
 
   var sandbox;
@@ -11,8 +17,9 @@ describe('Molecule tests', function() {
   });
 
   describe('Basic tests', function() {
-    it('should exist on window as Molecule', function() {
-      expect(window.Molecule).to.be.a('function');
+
+    it('should exist as Molecule', function() {
+      expect(Molecule).to.be.a('function');
     });
 
     it('should create a function with the object properties on the prototype', function() {

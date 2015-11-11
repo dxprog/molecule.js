@@ -102,6 +102,14 @@
 
   }
 
-  window.Molecule = Molecule;
+  // CommonJS export when that environment is present.
+  if (typeof module === 'object' && typeof module.exports === 'object') {
+    module.exports = Molecule;
+  }
+
+  // Throw on window if that's available
+  if (typeof window !== 'undefined') {
+    window.Molecule = Molecule;
+  }
 
 }());

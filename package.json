@@ -4,7 +4,7 @@
   "description": "(Yet another) JavaScript class-like library",
   "main": "molecule.js",
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start karma.conf.js --single-run"
+    "test": "./node_modules/mocha/bin/mocha tests/ && ./node_modules/karma/bin/karma start karma.conf.js --single-run"
   },
   "repository": {
     "type": "git",
