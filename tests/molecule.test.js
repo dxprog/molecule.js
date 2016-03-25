@@ -40,6 +40,11 @@ describe('Molecule tests', function() {
       var instance = new MyClass();
       sinon.assert.calledOnce(spy);
     });
+
+    it('should export molecule in index.js', function() {
+      var molecule = require('../index');
+      expect(molecule).to.equal(molecule);
+    });
   });
 
   describe('class extending', function() {

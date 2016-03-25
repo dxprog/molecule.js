@@ -1,8 +1,8 @@
 {
   "name": "moleculejs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "(Yet another) JavaScript class-like library",
-  "main": "molecule.js",
+  "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha tests/ && ./node_modules/karma/bin/karma start karma.conf.js --single-run"
   },
